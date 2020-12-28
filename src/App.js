@@ -1,25 +1,31 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const nayoks = ['Jamal', 'Kamal', 'Jihad', 'Shuvo'];
   return (
     <div className="App">
+      <Nayok name={nayoks[0]} age='30'></Nayok>
+      <Nayok name={nayoks[1]} age='32'></Nayok>
+      <Nayok name={nayoks[2]} age='34'></Nayok>
+      <Nayok name ={nayoks[3]} age='35'></Nayok>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+
       </header>
     </div>
   );
+}
+
+function Nayok(props){
+  console.log(props);
+  return (
+    <div style={{ border: '2px dotted green' }}>
+      <h1>Hello, I am nayok {props.name} </h1>
+      <h3>I am {props.age} years old </h3>
+    </div>
+  )
 }
 
 export default App;
