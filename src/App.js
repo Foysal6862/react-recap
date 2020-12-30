@@ -1,16 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const nayoks = ['Jamal', 'Kamal', 'Jihad', 'Shuvo'];
+  // const nayoks = [{name:'Jamal', age: 90}, {name:'Kamal', age:'33'}, {name:'Jihad', age:'37'}, {name: 'Shuvo', age:'23'}];
+  const [nayoks, setNayoks] = useState([]);
+  useEffect(()=>{
+      fetch('https://randomuser.me/api/?results=50')
+      // fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(data => setNayoks(data));
+  }, [])
+
+  // $.ajax({
+  //   url: 'https://randomuser.me/api/?results',
+  //   dataType: 'json',
+  //   success: function(data) {
+  //     setNayoks(data);
+  //   }
+  // });
   return (
     <div className="App">
       <MovieCounter></MovieCounter>
-      <Nayok name={nayoks[0]} age='30'></Nayok>
-      <Nayok name={nayoks[1]} age='32'></Nayok>
-      <Nayok name={nayoks[2]} age='34'></Nayok>
-      <Nayok name ={nayoks[3]} age='35'></Nayok>
+      {
+        // nayoks && !!nayoks.length &&
+       nayoks.results.map(nayok => <Nayok name={nayok.name.first} age={nayok.age} key={nayok.id}></Nayok>)
+      }
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
 
